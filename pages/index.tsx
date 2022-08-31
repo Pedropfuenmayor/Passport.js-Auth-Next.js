@@ -1,9 +1,13 @@
 import type { NextPage } from "next";
-import { Values } from "../models/index";
+import { User } from "../models/index";
 import { Formik, Field, Form, FormikHelpers } from "formik";
-import { v4 as uuid } from "uuid";
+import { useGetUsers, usePostUser } from "lib/utils/users";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const Home: NextPage = () => {
+  const { isFetching, ...queryInfo } = useGetUsers()
+  const mutation = usePostUser()
   return (
     <div>
       <h1>Signup</h1>
@@ -13,13 +17,11 @@ const Home: NextPage = () => {
           password: "",
         }}
         onSubmit={(
-          values: Values,
-          { setSubmitting, resetForm }: FormikHelpers<Values>
+          values: User,
+          { setSubmitting, resetForm }: FormikHelpers<User>
         ) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 500);
+          mutation.mutate(values);
+          setSubmitting(false);
           resetForm();
         }}
       >
@@ -33,8 +35,21 @@ const Home: NextPage = () => {
           <button type="submit">Submit</button>
         </Form>
       </Formik>
+      <br />
+      {queryInfo.isSuccess && (
+        <>
+          <ul>
+            {queryInfo.data.map(({email, id}) => (
+              <li key={id}>{email}</li>
+            ))}
+          </ul>
+          {isFetching && <div>Updating in background...</div>}
+        </>
+      )}
+      {queryInfo.isLoading && 'Loading'}
+      {queryInfo.error instanceof Error && queryInfo.error.message}
     </div>
-  );
-};
+  )
+}
 
 export default Home;
