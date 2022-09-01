@@ -5,7 +5,7 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/extend-expect'
 import { setupServer } from 'msw/node'
-import { handlers } from './__test__/ui/util'
+import { handlers } from './__test__/util'
 
 export const server = setupServer(...handlers)
 
