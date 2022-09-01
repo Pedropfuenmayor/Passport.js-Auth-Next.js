@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { User } from "../models/index";
 import { Formik, Field, Form, FormikHelpers, ErrorMessage } from "formik";
-import { useGetUsers, usePostUser } from "lib/utils/users";
+import { useGetUsers, usePostUser } from "../hooks/users";
 import * as Yup from "yup";
 
 const Home: NextPage = () => {
