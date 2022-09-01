@@ -17,7 +17,8 @@
     "formik": "^2.2.9",
     "next": "latest",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@testing-library/cypress": "^8.0.3",

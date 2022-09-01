@@ -7,7 +7,6 @@ export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  
   //GET
   if (req.method === "GET") {
     try {
@@ -33,5 +32,4 @@ export default async function handle(
       res.status(500).json({ message: "Unable to create a user." });
     }
   }
-
 }
