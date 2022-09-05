@@ -1,15 +1,15 @@
 import type { NextPage } from "next";
 import { User } from "../models/index";
 import { Formik, Field, Form, FormikHelpers, ErrorMessage } from "formik";
-import { useGetUsers, useSignupUser } from "../hooks/users";
+import { useGetUsers, useLoginUser } from "../hooks/users";
 import * as Yup from "yup";
 
-const Home: NextPage = () => {
+const Login: NextPage = () => {
   const user = useGetUsers();
-  const mutation = useSignupUser()
+  const mutation = useLoginUser()
   return (
     <div>
-      <h1>Signup</h1>
+      <h1>Login</h1>
       <Formik
         initialValues={{
           email: "",
@@ -62,4 +62,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Login;
