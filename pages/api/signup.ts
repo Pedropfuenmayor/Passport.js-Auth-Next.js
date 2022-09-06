@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { User } from "../../models/index";
-import { createUser, findUser, validatePassword } from "./utils";
+import { createUser } from "../../lib/user";
 
 export default async function signup(
   req: NextApiRequest,

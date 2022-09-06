@@ -1,20 +1,20 @@
+import { User } from "models";
 import { NextApiRequest, NextApiResponse } from "next";
 import nextConnect from "next-connect";
 import passport from "passport";
-import { User } from "../../models/index";
-import { authenticate, localStrategy } from "./utils";
+import { authenticate, localStrategy } from "../../lib/passport";
+import { setLoginSession } from "../../lib/auth";
 
 passport.use(localStrategy);
 export default nextConnect<NextApiRequest, NextApiResponse>()
   .use(passport.initialize())
   .post(async (req, res) => {
     try {
-      const user =  await authenticate("local", req, res);
+      const user = await authenticate("local", req, res);
       // session is the payload to save in the token, it may contain basic info about the user
-      console.log(user)
-    //   const session = { ...user };
+      const session = { ...(user as User) };
 
-      //   await setLoginSession(res, session)
+      await setLoginSession(res, session);
 
       res.status(200).send({ done: true });
     } catch (error) {
