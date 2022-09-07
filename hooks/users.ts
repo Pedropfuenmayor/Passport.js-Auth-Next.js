@@ -54,7 +54,7 @@ export function useUser({ redirectTo, redirectIfFound }: RedirectUser = {}) {
     }
   }, [redirectTo, redirectIfFound, user.isSuccess, user.data, router]);
 
-  return user;
+  return  user;
 }
 // // Mutate user and update it optimistically
 // export function useMutate() {

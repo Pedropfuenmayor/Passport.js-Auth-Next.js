@@ -1,2 +1,1 @@
-# Next.js boiler plate for full stack applications
-
+# Passport.js implementation in Next.js for authentication and authorization.
