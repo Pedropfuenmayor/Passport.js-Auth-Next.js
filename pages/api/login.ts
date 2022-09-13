@@ -19,6 +19,6 @@ export default nextConnect<NextApiRequest, NextApiResponse>()
       res.status(200).send({ done: true });
     } catch (error) {
       console.error(error);
-      res.status(401).send(error.message);
+      res.status(401).send({ message: "Email password combination not valid" });
     }
   });
